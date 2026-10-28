@@ -1,0 +1,34 @@
+services:
+  backend:
+    image: athar-dev:latest
+    working_dir: /app
+    restart: unless-stopped
+    volumes:
+      - ${ATHAR_HOST_PATH:-.}:/app
+      - pnpmstore:/root/.local/share/pnpm/store
+    command: sh -lc "pnpm --filter @dtc/backend dev"
+    environment:
+      NODE_ENV: development
+    ports:
+      - "9000:9000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  storefront:
+    image: athar-dev:latest
+    working_dir: /app
+    restart: unless-stopped
+    volumes:
+      - ${ATHAR_HOST_PATH:-.}:/app
+      - pnpmstore:/root/.local/share/pnpm/store
+    command: sh -lc "pnpm --filter @dtc/storefront dev"
+    environment:
+      NODE_ENV: development
+      MEDUSA_BACKEND_URL: http://backend:9000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - backend

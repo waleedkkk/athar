@@ -1,0 +1,8 @@
+FROM node:24-bookworm
+
+RUN corepack enable
+
+WORKDIR /app
+
+ENV NODE_ENV=development
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
