@@ -36,7 +36,7 @@ export class CashOnDeliveryProviderService extends AbstractPaymentProvider<Manua
 
   protected options_: ManualPaymentOptions
 
-  constructor(_: unknown, options: ManualPaymentOptions = {}) {
+  constructor(_: Record<string, unknown>, options: ManualPaymentOptions = {}) {
     super(_, options)
     this.options_ = options
   }

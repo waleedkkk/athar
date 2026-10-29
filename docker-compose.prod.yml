@@ -1,0 +1,65 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    image: athar-backend:latest
+    restart: unless-stopped
+    env_file:
+      - ./apps/backend/.env.production
+    environment:
+      NODE_ENV: production
+    ports:
+      - "9000:9000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "node -e \"fetch('http://127.0.0.1:9000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\"",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+
+  storefront:
+    build:
+      context: .
+      dockerfile: apps/storefront/Dockerfile
+      network: host
+      args:
+        NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: pk_9a857a6df7f4065b02199b8c55f7300916da5a3ec0973b524d81e4dd24bdbd70
+        NEXT_PUBLIC_MEDUSA_BACKEND_URL: https://atharr.duckdns.org
+        NEXT_PUBLIC_BASE_URL: https://atharr.duckdns.org
+        NEXT_PUBLIC_DEFAULT_REGION: eg
+        MEDUSA_BACKEND_URL: http://127.0.0.1:9000
+    image: athar-storefront:latest
+    working_dir: /app/storefront
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      MEDUSA_BACKEND_URL: http://backend:9000
+      NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: pk_9a857a6df7f4065b02199b8c55f7300916da5a3ec0973b524d81e4dd24bdbd70
+      NEXT_PUBLIC_MEDUSA_BACKEND_URL: https://atharr.duckdns.org
+      NEXT_PUBLIC_BASE_URL: https://atharr.duckdns.org
+      NEXT_PUBLIC_DEFAULT_REGION: eg
+    ports:
+      - "8000:8000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "node -e \"fetch('http://127.0.0.1:8000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\"",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 60s

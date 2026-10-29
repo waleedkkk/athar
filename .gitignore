@@ -37,7 +37,11 @@ yarn-error.log*
 **/.env.local
 **/.env.development.local
 **/.env.test.local
+**/.env.production
 **/.env.production.local
+
+# Superpowers scratch workspace
+.superpowers/
 
 # Turbo
 .turbo

@@ -25,14 +25,14 @@ import {
   PaymentActions,
   PaymentSessionStatus,
 } from "@medusajs/framework/utils"
-import { ManualPaymentOptions } from "./cod-provider"
+import { ManualPaymentOptions } from "./cod"
 
 export class VodafoneCashProviderService extends AbstractPaymentProvider<ManualPaymentOptions> {
   static identifier = "vodafone-cash"
 
   protected options_: ManualPaymentOptions
 
-  constructor(_: unknown, options: ManualPaymentOptions = {}) {
+  constructor(_: Record<string, unknown>, options: ManualPaymentOptions = {}) {
     super(_, options)
     this.options_ = options
   }
