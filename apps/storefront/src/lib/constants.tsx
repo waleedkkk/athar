@@ -62,6 +62,16 @@ export const isManual = (providerId?: string) => {
   return providerId?.startsWith("pp_system_default")
 }
 
+export const offlinePaymentProviders = [
+  "pp_cash-on-delivery_cod",
+  "pp_instapay_instapay",
+  "pp_vodafone-cash_vodafone",
+]
+
+export const isOfflineProvider = (providerId?: string) => {
+  return !!providerId && offlinePaymentProviders.includes(providerId)
+}
+
 // Add currencies that don't need to be divided by 100
 export const noDivisionCurrencies = [
   "krw",
