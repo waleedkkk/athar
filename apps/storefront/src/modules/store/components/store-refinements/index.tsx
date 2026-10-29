@@ -20,7 +20,7 @@ const SortProducts = ({ currencyCode }: { currencyCode: string }) => {
 
   return (
     <FilterRadioGroup
-      title="Sort by"
+      title="ترتيب حسب"
       items={items}
       value={currentRefinement}
       handleChange={refine}
@@ -31,14 +31,14 @@ const SortProducts = ({ currencyCode }: { currencyCode: string }) => {
 
 const StoreRefinements = ({ currencyCode }: { currencyCode: string }) => {
   return (
-    <div className="flex flex-col gap-12 py-4 mb-8 small:px-0 pl-6 small:w-[250px] small:shrink-0 small:ml-[1.675rem]">
+    <div className="flex flex-col gap-12 py-4 mb-8 small:px-0 ps-6 small:w-[250px] small:shrink-0 small:me-[1.675rem]">
       <SortProducts currencyCode={currencyCode} />
       <CurrentRefinements currencyCode={currencyCode} />
       <OptionRefinements />
       <PriceRange currencyCode={currencyCode} />
       <OnSaleToggle currencyCode={currencyCode} />
-      <RefinementGroup attribute={CATEGORY_ATTRIBUTE} title="Category" />
-      <RefinementGroup attribute={LABELS_ATTRIBUTE} title="Labels" />
+      <RefinementGroup attribute={CATEGORY_ATTRIBUTE} title="التصنيف" />
+      <RefinementGroup attribute={LABELS_ATTRIBUTE} title="العلامات" />
     </div>
   )
 }

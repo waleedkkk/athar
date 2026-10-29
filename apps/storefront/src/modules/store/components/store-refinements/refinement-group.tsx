@@ -24,7 +24,7 @@ const RefinementGroup = ({ attribute, title }: RefinementGroupProps) => {
       <span className="txt-compact-small-plus text-ui-fg-subtle">
         {title}
       </span>
-      <ul className="flex flex-col gap-y-2 pr-6">
+      <ul className="flex flex-col gap-y-2 pe-6">
         {items.map((item) => (
           <li key={item.value}>
             <label className="flex cursor-pointer items-start gap-x-2">

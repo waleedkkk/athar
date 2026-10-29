@@ -34,7 +34,7 @@ function refinementLabel(refinement: Refinement, currencyCode: string) {
   }
 
   if (attribute === priceAttribute("on_sale", currencyCode)) {
-    return "On sale"
+    return "تخفيضات"
   }
 
   if (attribute === priceAttribute("min_price", currencyCode)) {
@@ -45,16 +45,16 @@ function refinementLabel(refinement: Refinement, currencyCode: string) {
     })
 
     return operator === "<=" || operator === "<"
-      ? `Up to ${amount}`
-      : `From ${amount}`
+      ? `حتى ${amount}`
+      : `يبدأ من ${amount}`
   }
 
   if (attribute === CATEGORY_ATTRIBUTE) {
-    return `Category: ${label}`
+    return `التصنيف: ${label}`
   }
 
   if (attribute === LABELS_ATTRIBUTE) {
-    return `Label: ${label}`
+    return `العلامة: ${label}`
   }
 
   return label
@@ -77,9 +77,9 @@ const CurrentRefinements = ({ currencyCode }: { currencyCode: string }) => {
 
   return (
     <div className="flex flex-col gap-y-3" data-testid="current-refinements">
-      <div className="flex items-center justify-between gap-x-2 pr-6">
+      <div className="flex items-center justify-between gap-x-2 pe-6">
         <span className="txt-compact-small-plus text-ui-fg-subtle">
-          Applied filters
+          الفلاتر المطبقة
         </span>
         {canClearAll && (
           <button
@@ -87,12 +87,12 @@ const CurrentRefinements = ({ currencyCode }: { currencyCode: string }) => {
             className="txt-compact-small-plus text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
             data-testid="clear-refinements"
           >
-            Clear all
+            مسح الكل
           </button>
         )}
       </div>
 
-      <ul className="flex flex-wrap gap-2 pr-6">
+      <ul className="flex flex-wrap gap-2 pe-6">
         {refinements.map((refinement) => {
           const label = refinementLabel(refinement, currencyCode)
 

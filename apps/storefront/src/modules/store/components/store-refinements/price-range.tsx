@@ -53,9 +53,9 @@ const PriceRange = ({ currencyCode }: { currencyCode: string }) => {
 
   return (
     <div className="flex flex-col gap-y-4">
-      <span className="txt-compact-small-plus text-ui-fg-subtle">Price</span>
+      <span className="txt-compact-small-plus text-ui-fg-subtle">نطاق السعر</span>
 
-      <div className="flex flex-col gap-y-3 pr-6">
+      <div className="flex flex-col gap-y-3 pe-6">
         <Slider.Root
           className="relative flex h-5 w-full touch-none select-none items-center"
           value={value}

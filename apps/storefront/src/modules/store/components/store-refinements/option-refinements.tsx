@@ -79,7 +79,7 @@ const OptionRefinements = () => {
             .filter((title) => !openTitles.includes(title))
         )
       }
-      className="flex flex-col gap-y-3 pr-6"
+      className="flex flex-col gap-y-3 pe-6"
     >
       {groups.map((group) => {
         const isOpen = !closedGroups.includes(group.title)
@@ -94,7 +94,7 @@ const OptionRefinements = () => {
             className="overflow-hidden"
           >
             <Accordion.Header>
-              <Accordion.Trigger className="flex w-full items-center justify-between py-3 text-left">
+              <Accordion.Trigger className="flex w-full items-center justify-between py-3 text-start">
                 <div className="flex items-center gap-2">
                   <span className="txt-compact-small-plus text-ui-fg-base">
                     {group.title}
