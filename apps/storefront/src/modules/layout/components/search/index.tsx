@@ -58,8 +58,8 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
             setInputValue(event.target.value)
             refine(event.target.value)
           }}
-          placeholder="Search products"
-          aria-label="Search products"
+          placeholder="ابحث عن المنتجات"
+          aria-label="ابحث عن المنتجات"
           autoFocus
           className="txt-medium w-full bg-transparent py-4 text-ui-fg-base outline-none placeholder:text-ui-fg-muted"
           data-testid="search-input"
@@ -72,14 +72,14 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
             className="px-4 py-6 text-center text-ui-fg-muted"
             data-testid="search-empty"
           >
-            Start typing to search for products.
+            ابدأ الكتابة للبحث عن المنتجات.
           </Text>
         ) : status === "error" ? (
           <Text
             className="px-4 py-6 text-center text-ui-fg-error"
             data-testid="search-error"
           >
-            Couldn&apos;t search products
+            تعذر البحث عن المنتجات
             {error?.message ? `: ${error.message}` : "."}
           </Text>
         ) : !isSettled ? (
@@ -87,7 +87,7 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
             className="px-4 py-6 text-center text-ui-fg-muted"
             data-testid="search-loading"
           >
-            Searching&hellip;
+            جارٍ البحث&hellip;
           </Text>
         ) : hasResults ? (
           <ul className="py-2" data-testid="search-results">
@@ -100,14 +100,14 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
             className="px-4 py-6 text-center text-ui-fg-muted"
             data-testid="search-loading"
           >
-            Searching&hellip;
+            جارٍ البحث&hellip;
           </Text>
         ) : (
           <Text
             className="px-4 py-6 text-center text-ui-fg-subtle"
             data-testid="search-no-results"
           >
-            No products found for &quot;{query}&quot;
+            لا توجد منتجات لـ &laquo;{query}&raquo;
           </Text>
         )}
       </div>
@@ -128,7 +128,7 @@ const Search = () => {
           event.preventDefault()
           open()
         }}
-        aria-label="Search products"
+        aria-label="ابحث عن المنتجات"
         className="flex items-center hover:text-ui-fg-base"
         data-testid="nav-search-button"
       >

@@ -18,20 +18,29 @@ export async function generateMetadata(props: {
   const [origin, regions] = await Promise.all([getSiteOrigin(), listRegions()])
 
   return {
-    title: "Medusa Next.js Starter Template",
+    title: "أثر | تصاميم تترك أثراً",
     description:
-      "A performant frontend ecommerce starter template with Next.js 16 and Medusa.",
+      "تيشيرتات بتصاميم مصرية أصلية مستوحاة من التراث، بجودة عالية وتفاصيل تُروى. تسوق الآن من أثر.",
     alternates: {
       canonical: `${origin}/${countryCode}`,
       languages: {
         ...Object.fromEntries(
           listCountryCodes(regions).map((code) => [
-            `en-${code.toUpperCase()}`,
+            `ar-${code.toUpperCase()}`,
             `${origin}/${code}`,
           ])
         ),
         "x-default": origin,
       },
+    },
+    openGraph: {
+      type: "website",
+      locale: "ar_EG",
+      siteName: STORE_NAME,
+    title: "أثر | تصاميم تترك أثراً",
+      description:
+        "تيشيرتات بتصاميم مصرية أصلية مستوحاة من التراث، بجودة عالية وتفاصيل تُروى.",
+      images: [{ url: "/logo.jpg", width: 715, height: 524, alt: "أثر" }],
     },
   }
 }

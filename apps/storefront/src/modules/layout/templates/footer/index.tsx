@@ -3,7 +3,7 @@ import { listCollections } from "@lib/data/collections";
 import { Text, clx } from "@modules/common/components/ui";
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
-import MedusaCTA from "@modules/layout/components/medusa-cta";
+import BrandLogo from "@modules/layout/components/brand-logo";
 
 export default async function Footer() {
   const [{ collections }, productCategories] = await Promise.all([
@@ -15,23 +15,19 @@ export default async function Footer() {
   ]);
 
   return (
-    <footer className="border-t border-ui-border-base w-full">
+    <footer className="border-t border-ui-border-base w-full bg-ui-bg-base">
       <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
-            <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
-            >
-              Medusa Store
-            </LocalizedClientLink>
+        <div className="flex flex-col gap-y-10 xsmall:flex-row items-start justify-between py-20">
+          <div className="flex flex-col gap-4">
+            <BrandLogo size="md" />
+            <p className="max-w-xs text-small-regular leading-6 text-ui-fg-subtle">
+              تصاميم مصرية أصلية تحكي قصصاً من التراث، وتترك أثراً في كل تفصيلة.
+            </p>
           </div>
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
             {productCategories && productCategories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
-                </span>
+                <span className="txt-small-plus txt-ui-fg-base">التصنيفات</span>
                 <ul
                   className="grid grid-cols-1 gap-2"
                   data-testid="footer-categories"
@@ -64,7 +60,7 @@ export default async function Footer() {
                           {c.name}
                         </LocalizedClientLink>
                         {children && (
-                          <ul className="grid grid-cols-1 ml-3 gap-2">
+                          <ul className="grid grid-cols-1 ms-3 gap-2">
                             {children &&
                               children.map((child) => (
                                 <li key={child.id}>
@@ -87,9 +83,7 @@ export default async function Footer() {
             )}
             {collections && collections.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
-                </span>
+                <span className="txt-small-plus txt-ui-fg-base">المجموعات</span>
                 <ul
                   className={clx(
                     "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
@@ -112,16 +106,14 @@ export default async function Footer() {
               </div>
             )}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">
-                Customer service
-              </span>
+              <span className="txt-small-plus txt-ui-fg-base">خدمة العملاء</span>
               <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
                 <li>
                   <LocalizedClientLink
                     className="hover:text-ui-fg-base"
                     href="/shipping"
                   >
-                    Shipping information
+                    الشحن والتوصيل
                   </LocalizedClientLink>
                 </li>
                 <li>
@@ -129,7 +121,7 @@ export default async function Footer() {
                     className="hover:text-ui-fg-base"
                     href="/returns"
                   >
-                    Return policy
+                    سياسة الاسترجاع
                   </LocalizedClientLink>
                 </li>
                 <li>
@@ -137,7 +129,7 @@ export default async function Footer() {
                     className="hover:text-ui-fg-base"
                     href="/terms"
                   >
-                    Terms of service
+                    الشروط والأحكام
                   </LocalizedClientLink>
                 </li>
                 <li>
@@ -145,7 +137,7 @@ export default async function Footer() {
                     className="hover:text-ui-fg-base"
                     href="/privacy"
                   >
-                    Privacy policy
+                    سياسة الخصوصية
                   </LocalizedClientLink>
                 </li>
                 <li>
@@ -153,7 +145,7 @@ export default async function Footer() {
                     className="hover:text-ui-fg-base"
                     href="/contact"
                   >
-                    Contact
+                    تواصل معنا
                   </LocalizedClientLink>
                 </li>
                 <li>
@@ -161,53 +153,18 @@ export default async function Footer() {
                     className="hover:text-ui-fg-base"
                     href="/search"
                   >
-                    Search
+                    البحث
                   </LocalizedClientLink>
-                </li>
-              </ul>
-            </div>
-            <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">Medusa</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
-                <li>
-                  <a
-                    href="https://github.com/medusajs"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://docs.medusajs.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/medusajs/dtc-starter"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Source code
-                  </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
+        <div className="flex w-full mb-10 flex-col gap-2 small:flex-row small:items-center small:justify-between text-ui-fg-muted">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
+            © {new Date().getFullYear()} أثر. جميع الحقوق محفوظة.
           </Text>
-          <MedusaCTA />
+          <Text className="txt-compact-small">صُنع بحب في مصر</Text>
         </div>
       </div>
     </footer>

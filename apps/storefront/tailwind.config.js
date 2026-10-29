@@ -20,6 +20,18 @@ module.exports = {
         padding: "padding-top padding-right padding-bottom padding-left",
       },
       colors: {
+        athar: {
+          cream: "#F9F2E7",
+          ivory: "#FDFAEF",
+          sand: "#E8D3CA",
+          rose: "#966B65",
+          "rose-light": "#CCB1A9",
+          maroon: "#6E1316",
+          "maroon-dark": "#4A0D10",
+          olive: "#5E6B4A",
+          ink: "#2B1418",
+          gold: "#C9A45C",
+        },
         grey: {
           0: "#FFFFFF",
           5: "#F9FAFB",
@@ -59,6 +71,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
+          "var(--font-cairo)",
           "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -68,6 +81,7 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
+        display: ["var(--font-cairo)", "Georgia", "serif"],
       },
       keyframes: {
         ring: {

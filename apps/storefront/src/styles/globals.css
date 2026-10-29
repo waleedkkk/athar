@@ -2,6 +2,60 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+:root {
+  --bg-base: #f9f2e7;
+  --bg-subtle: #f3e8d8;
+  --bg-component: #fdfaef;
+  --bg-component-hover: #f3e8d8;
+  --bg-component-pressed: #ebdcc9;
+  --bg-field: #fdfaef;
+  --bg-field-hover: #f9f2e7;
+  --bg-field-component: #fdfaef;
+  --bg-field-component-hover: #f9f2e7;
+  --bg-highlight: #f3e8d8;
+  --bg-highlight-hover: #ebdcc9;
+  --bg-interactive: #6e1316;
+  --bg-overlay: rgba(43, 20, 24, 0.6);
+  --bg-switch-off: #e3d3c2;
+
+  --fg-base: #2b1418;
+  --fg-subtle: #6b5a52;
+  --fg-muted: #8a756c;
+  --fg-interactive: #6e1316;
+  --fg-interactive-hover: #4a0d10;
+  --fg-on-color: #fdfaef;
+  --fg-on-inverted: #fdfaef;
+
+  --border-base: #e3d3c2;
+  --border-strong: #c9b49a;
+  --border-interactive: #6e1316;
+  --border-menu-top: #e3d3c2;
+  --border-menu-bot: #f9f2e7;
+
+  --button-inverted: #6e1316;
+  --button-inverted-hover: #4a0d10;
+  --button-inverted-pressed: #3a090c;
+  --button-neutral: #fdfaef;
+  --button-neutral-hover: #f3e8d8;
+  --button-neutral-pressed: #ebdcc9;
+
+  --contrast-bg-base: #2b1418;
+  --contrast-bg-base-hover: #4a0d10;
+  --contrast-fg-primary: #fdfaef;
+  --contrast-fg-secondary: rgba(253, 250, 239, 0.7);
+  --contrast-border-base: rgba(253, 250, 239, 0.2);
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--fg-base);
+}
+
+::selection {
+  background-color: #6e1316;
+  color: #fdfaef;
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
@@ -23,7 +77,7 @@
   }
 
   input:focus ~ label {
-    @apply left-0;
+    @apply start-0;
   }
 
   input:-webkit-autofill,
