@@ -32,18 +32,16 @@ const Review = ({ cart }: { cart: HttpTypes.StoreCart }) => {
             }
           )}
         >
-          Review
+          مراجعة وتأكيد الطلب
         </Heading>
       </div>
       {isOpen && previousStepsCompleted && (
         <>
           <div className="flex items-start gap-x-1 w-full mb-6">
             <div className="w-full">
-              <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                By clicking the Place Order button, you confirm that you have
-                read, understand and accept our Terms of Use, Terms of Sale and
-                Returns Policy and acknowledge that you have read Medusa
-                Store&apos;s Privacy Policy.
+              <Text className="txt-medium text-ui-fg-subtle mb-1">
+                بالضغط على زر «تأكيد الطلب الآن»، فإنك تؤكد موافقتك على شروط الاستخدام
+                وسياسة الاستبدال والاسترجاع الخاصة بمتجر أثر.
               </Text>
             </div>
           </div>

@@ -9,14 +9,13 @@ const EmptyCartMessage = () => {
         level="h1"
         className="flex flex-row text-3xl-regular gap-x-2 items-baseline"
       >
-        Cart
+        سلة التسوق
       </Heading>
       <Text className="text-base-regular mt-4 mb-6 max-w-[32rem]">
-        You don&apos;t have anything in your cart. Let&apos;s change that, use
-        the link below to start browsing our products.
+        سلتك فارغة حالياً. تصفح تشكيلة تيشيرتات أثر واختر التصميم اللي يعبّر عنك.
       </Text>
       <div>
-        <InteractiveLink href="/store">Explore products</InteractiveLink>
+        <InteractiveLink href="/store">تصفح التيشيرتات</InteractiveLink>
       </div>
     </div>
   )

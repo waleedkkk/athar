@@ -112,7 +112,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                   <span>
                     {variant
                       ? Object.values(options).join(" / ")
-                      : "Select Options"}
+                      : "تحديد الخيارات"}
                   </span>
                   <ChevronDown />
                 </div>
@@ -126,10 +126,10 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 data-testid="mobile-cart-button"
               >
                 {!variant
-                  ? "Select variant"
+                  ? "اختر المقاس / اللون"
                   : !inStock
-                  ? "Out of stock"
-                  : "Add to cart"}
+                  ? "نفدت الكمية"
+                  : "أضف إلى السلة"}
               </Button>
             </div>
           </div>
@@ -169,7 +169,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                       onClick={close}
                       className="bg-white w-12 h-12 rounded-full text-ui-fg-base flex justify-center items-center"
                       data-testid="close-modal-button"
-                      aria-label="Close"
+                      aria-label="إغلاق"
                     >
                       <X />
                     </button>
