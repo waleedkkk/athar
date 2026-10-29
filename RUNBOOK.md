@@ -48,3 +48,38 @@ docker logs -f athar-storefront-1
 ```bash
 nginx -t && systemctl reload nginx
 ```
+
+### 4. تعديل إعدادات Nginx على الخادم:
+```bash
+docker run --rm --privileged --pid=host alpine nsenter -t 1 -m -u -i -n -p -- sh -c 'vi /etc/nginx/sites-available/atharr.duckdns.org && nginx -t && systemctl reload nginx'
+```
+
+---
+
+## مشاكل شائعة وحلولها (Known Issues)
+
+### تعطّل التفاعل في المتجر بعد التثبيت عبر Nginx (المتجر لا يستجيب للنقر)
+- **السبب**: خادم Next.js في وضع التطوير يرفض طلبات HMR/WebSocket قادمة من النطاق العام، فتفشل عملية الترطيب (hydration) ويصبح المتجر غير تفاعلي دون أي رسالة خطأ ظاهرة.
+- **الحل**: إضافة النطاق العام إلى `allowedDevOrigins` في `apps/storefront/next.config.js` ثم إعادة تشغيل حاوية المتجر:
+```bash
+docker restart athar-storefront-1
+```
+
+### ظهور بيانات قديمة بعد تعديل قاعدة البيانات مباشرة (مثل أسماء التصنيفات)
+- **السبب**: المتجر يستخدم `cache: "force-cache"`، فتُخزّن بيانات الكتالوج في كاش Next.js.
+- **الحل**: مسح كاش الجلب ثم إعادة تشغيل المتجر:
+```bash
+docker exec athar-storefront-1 sh -lc 'rm -rf /app/apps/storefront/.next/dev/cache/fetch-cache/*'
+docker restart athar-storefront-1
+```
+
+---
+
+## اختبار الشراء الحقيقي (Live Checkout Test)
+- تم تنفيذ عملية شراء كاملة بنجاح عبر `https://atharr.duckdns.org`:
+  - الطلب رقم 1: `order_01M64GA6NSK7KN04R2FBVS8C27` — الإجمالي 1,520 EGP (3 قطع + شحن القاهرة والجيزة 50 EGP) — الدفع عند الاستلام.
+  - الطلب رقم 2: `order_01M64N4208S19TS4MBFVHKWQ1R` — الإجمالي 540 EGP (قطعة واحدة + شحن) — الدفع عند الاستلام.
+- التحقق من الطلبات يتم مباشرة في قاعدة البيانات:
+```bash
+docker exec athar-postgres-1 psql -U medusa -d athar -c "select id, display_id, status, currency_code, email, created_at from \"order\" order by created_at desc limit 5;"
+```
