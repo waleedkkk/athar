@@ -30,7 +30,19 @@ export const paymentInfoMap: Record<
     icon: <PayPal />,
   },
   pp_system_default: {
-    title: "Manual Payment",
+    title: "الدفع اليدوي",
+    icon: <CreditCard />,
+  },
+  "pp_cash-on-delivery_cod": {
+    title: "الدفع عند الاستلام (COD)",
+    icon: <CreditCard />,
+  },
+  pp_instapay_instapay: {
+    title: "إنستاباي (InstaPay)",
+    icon: <CreditCard />,
+  },
+  "pp_vodafone-cash_vodafone": {
+    title: "فودافون كاش / المحافظ الإلكترونية",
     icon: <CreditCard />,
   },
   // Add more payment providers here

@@ -100,7 +100,12 @@ export default async function initial_data_seed({
           name: "Egypt",
           currency_code: "egp",
           countries,
-          payment_providers: ["pp_system_default"],
+          payment_providers: [
+            "pp_system_default",
+            "pp_cash-on-delivery_cod",
+            "pp_instapay_instapay",
+            "pp_vodafone-cash_vodafone",
+          ],
           metadata: DEFAULT_REGION_STORE_POLICIES,
         },
       ],

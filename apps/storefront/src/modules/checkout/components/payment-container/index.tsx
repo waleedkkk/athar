@@ -57,6 +57,35 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
       {isManual(paymentProviderId) && isDevelopment && (
         <PaymentTest className="small:hidden text-[10px]" />
       )}
+      {selectedPaymentOptionId === paymentProviderId && (
+        <div className="mt-3 pt-3 border-t border-ui-border-base text-small-regular text-ui-fg-subtle">
+          {paymentProviderId === "pp_cash-on-delivery_cod" && (
+            <p className="leading-6">
+              💵 ادفع نقداً لمندوب الشحن عند استلام وتفقد التيشيرت بكل راحة وأمان.
+            </p>
+          )}
+          {paymentProviderId === "pp_instapay_instapay" && (
+            <div className="space-y-1 bg-athar-cream/40 p-3 rounded-md">
+              <p className="font-semibold text-athar-maroon">
+                عنوان إنستاباي: <span className="font-mono text-ui-fg-base" dir="ltr">athar@instapay</span>
+              </p>
+              <p className="text-xs">
+                يرجى تحويل إجمالي الطلب عبر تطبيق InstaPay، والاحتفاظ بلقطة شاشة للإيصال.
+              </p>
+            </div>
+          )}
+          {paymentProviderId === "pp_vodafone-cash_vodafone" && (
+            <div className="space-y-1 bg-athar-cream/40 p-3 rounded-md">
+              <p className="font-semibold text-athar-maroon">
+                رقم محفظة فودافون كاش: <span className="font-mono text-ui-fg-base" dir="ltr">01000000000</span>
+              </p>
+              <p className="text-xs">
+                يرجى تحويل إجمالي الطلب إلى الرقم أعلاه وإرسال رسالة التأكيد عبر واتساب.
+              </p>
+            </div>
+          )}
+        </div>
+      )}
       {children}
     </RadioGroupOption>
   )
