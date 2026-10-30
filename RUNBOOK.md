@@ -3,9 +3,10 @@
 ## روابط الوصول الحية (Production Live URLs)
 - **المتجر الإلكتروني (Storefront)**: [https://atharr.duckdns.org](https://atharr.duckdns.org)
 - **لوحة التحكم (Medusa Admin Dashboard)**: [https://atharr.duckdns.org/app](https://atharr.duckdns.org/app)
-- **بيانات تسجيل دخول الإدارة الافتراضية للتطوير**:
-  - البريد: `admin@athar.local`
-  - كلمة المرور: `AtharDev!2026`
+- **دخول لوحة التحكم**: البريد `admin@athar.local`. كلمة المرور **لا تُحفظ في هذا المستودع إطلاقًا**؛ تُخزَّن على الخادم في `/root/.athar-admin-credentials` (بصلاحيات `600`). عند الحاجة: `sudo cat /root/.athar-admin-credentials`.
+- **إنشاء/تغيير كلمة مرور الإدارة** (من داخل الحاوية):
+  `docker exec -it athar-backend-1 sh -lc 'cd /app/deploy/backend/.medusa/server && /app/deploy/backend/node_modules/.bin/medusa user -e admin@athar.local -p <new-password>'`
+  - أي كلمة مرور تظهر في المستودع أو في السجل تُعتبر مكشوفة → دوّرها فورًا (تم تدويرها بتاريخ 2026-10-30 بعد تسرّبها في نسخة سابقة من هذا الملف).
 
 ---
 
