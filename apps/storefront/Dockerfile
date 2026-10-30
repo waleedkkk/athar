@@ -31,6 +31,7 @@ ENV NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL
 ENV NEXT_PUBLIC_DEFAULT_REGION=$NEXT_PUBLIC_DEFAULT_REGION
 ENV MEDUSA_BACKEND_URL=$MEDUSA_BACKEND_URL
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_OPTIONS=--max-old-space-size=3072
 
 COPY apps/storefront ./apps/storefront
 
@@ -54,9 +55,10 @@ WORKDIR /app/storefront
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-COPY --from=deploy /app/storefront ./
-COPY --from=builder /app/apps/storefront/.next ./.next
+COPY --from=deploy --chown=node:node /app/storefront ./
+
+USER node
 
 EXPOSE 8000
 
-CMD ["pnpm", "run", "start"]
+CMD ["/app/storefront/node_modules/.bin/next", "start", "-p", "8000"]

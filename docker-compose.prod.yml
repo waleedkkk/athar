@@ -5,6 +5,7 @@ services:
       dockerfile: apps/backend/Dockerfile
     image: athar-backend:latest
     restart: unless-stopped
+    stop_grace_period: 30s
     env_file:
       - ./apps/backend/.env.production
     environment:
@@ -41,6 +42,7 @@ services:
     image: athar-storefront:latest
     working_dir: /app/storefront
     restart: unless-stopped
+    stop_grace_period: 30s
     environment:
       NODE_ENV: production
       MEDUSA_BACKEND_URL: http://backend:9000

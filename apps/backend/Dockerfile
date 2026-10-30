@@ -19,6 +19,8 @@ FROM deps AS builder
 
 WORKDIR /app
 
+ENV NODE_ENV=production
+ENV NODE_OPTIONS=--max-old-space-size=3072
 ENV DATABASE_URL=postgres://medusa:medusa@localhost:5432/athar?sslmode=disable
 ENV REDIS_URL=redis://localhost:6379
 ENV STORE_CORS=http://localhost:8000
@@ -44,8 +46,10 @@ FROM base AS runner
 
 ENV NODE_ENV=production
 
-COPY --from=deploy /app/deploy/backend /app/deploy/backend
-COPY --from=builder /app/apps/backend/.medusa/server /app/deploy/backend/.medusa/server
+COPY --from=deploy --chown=node:node /app/deploy/backend /app/deploy/backend
+COPY --from=builder --chown=node:node /app/apps/backend/.medusa/server /app/deploy/backend/.medusa/server
+
+USER node
 
 WORKDIR /app/deploy/backend/.medusa/server
 
